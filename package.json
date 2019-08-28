@@ -1,0 +1,24 @@
+{
+  "name": "PuppeDoCLI",
+  "version": "1.0.0",
+  "description": " ",
+  "main": "index.js",
+  "bin": {
+    "ppdcli": "./index.js"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": {},
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "clear": "^0.1.0",
+    "figlet": "^1.2.3",
+    "npm-autoinit": "^0.2.0",
+    "simple-git": "^1.115.0"
+  }
+}
