@@ -1,10 +1,10 @@
 {
-  "name": "@PuppeDoCLI/create-project",
+  "name": "@puppedo/create-project",
   "version": "1.0.0",
   "description": "A CLI for scarfolding PuppeDo projects",
   "main": "index.js",
   "bin": {
-    "@PuppeDoCLI/create-project": "bin/create-project",
+    "@puppedo/ppd-cli": "bin/create-project",
     "ppd-cli": "bin/create-project"
   },
   "publishConfig": {
@@ -24,10 +24,13 @@
   "license": "ISC",
   "repository": {},
   "dependencies": {
+    "arg": "^4.1.1",
     "chalk": "^2.4.2",
     "clear": "^0.1.0",
     "esm": "^3.2.25",
     "figlet": "^1.2.3",
+    "inquirer": "^7.0.0",
+    "ncp": "^2.0.0",
     "npm-autoinit": "^0.2.0",
     "simple-git": "^1.124.0"
   }
