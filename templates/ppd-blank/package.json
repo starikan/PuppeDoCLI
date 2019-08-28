@@ -5,6 +5,9 @@
   "main": "main.js",
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "update": "ppd-update -y"
+  },
   "dependencies": {
     "PuppeDo": "starikan/PuppeDo"
   }
