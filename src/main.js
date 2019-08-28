@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import fs from 'fs';
+import fs from 'fs-extra';
 import ncp from 'ncp';
 import path from 'path';
 import { promisify } from 'util';
@@ -23,6 +23,17 @@ async function initGit(options) {
   });
   if (result.failed) {
     return Promise.reject(new Error('Failed to initialize git'));
+  }
+  return;
+}
+
+async function installAtoms(options) {
+  fs.removeSync('atoms');
+  const result = await execa('git', ['clone', 'https://github.com/starikan/PuppeDoAtoms', 'atoms'], {
+    cwd: options.targetDirectory,
+  });
+  if (result.failed) {
+    return Promise.reject(new Error('Failed to install atoms'));
   }
   return;
 }
@@ -59,16 +70,22 @@ export async function createProject(options) {
       task: () => copyTemplateFiles(options),
     },
     {
-      title: 'Initialize git',
-      task: () => initGit(options),
-      enabled: () => options.git,
-      skip: () => (!options.git ? 'Pass --git to automatically init git' : undefined),
-    },
-    {
       title: 'Install dependencies',
       task: () => projectInstall({ cwd: options.targetDirectory }),
       enabled: () => options.install,
       skip: () => (!options.install ? 'Pass --install to automatically install dependencies' : undefined),
+    },
+    {
+      title: 'Install atoms',
+      task: () => installAtoms({ cwd: options.targetDirectory }),
+      enabled: () => options.atoms,
+      skip: () => (!options.atoms ? 'Pass --atoms to automatically install atoms' : undefined),
+    },
+    {
+      title: 'Initialize git',
+      task: () => initGit(options),
+      enabled: () => options.git,
+      skip: () => (!options.git ? 'Pass --git to automatically init git' : undefined),
     },
   ]);
 

@@ -1,0 +1,139 @@
+{
+	"PPD test template": {
+		"scope": "yaml,plaintext",
+		"prefix": "ppdTest",
+		"body": [
+			"---",
+			"name: testName",
+			"type: test",
+			"needEnv: electron",
+			"description: ",
+			"runTest:",
+			"",
+		],
+		"description": "Create PPD test"
+	},
+	"PPD blank template": {
+		"scope": "yaml,plaintext",
+		"prefix": "ppdBlank",
+		"body": [
+			"- blank:",
+      "  name: ",
+      "  description: ",
+      "  runTest:",
+			"      ",
+		],
+		"description": "Create PPD test"
+	},
+	"PPD description": {
+		"scope": "yaml,plaintext",
+		"prefix": "ppdDescription",
+		"body": [
+			"description: ",
+		],
+		"description": "Create PPD test"
+	},
+	"PPD todo": {
+		"scope": "yaml,plaintext",
+		"prefix": "ppdTodo",
+		"body": [
+			"todo: ",
+		],
+		"description": "Create PPD todo"
+	},
+	"PPD runTest": {
+		"scope": "yaml,plaintext",
+		"prefix": "ppdRunTest",
+		"body": [
+			"runTest: ",
+			"  description: $1",
+		],
+		"description": "Create PPD runTest"
+	},
+	"PPD atom waitTime": {
+		"scope": "yaml",
+		"prefix": "ppd_waitTime",
+		"body": [
+			"- waitTime:",
+			"    data: {time: $1}",
+			"    description: $2",
+		],
+		"description": "Create PPD Atom waitTime"
+	},
+	"PPD atom clickSelector": {
+		"scope": "yaml,plaintext",
+		"prefix": "ppd_clickSelector",
+		"body": [
+			"- clickSelector:",
+			"    bS: { selector: $1 }",
+			"    description: $2",
+		],
+		"description": "Create PPD Atom clickSelector"
+	},
+	"PPD atom countSelectors": {
+		"scope": "yaml,plaintext",
+		"prefix": "ppd_countSelectors",
+		"body": [
+			"- countSelectors:",
+			"    bS: { selector: $1 }",
+			"    r: { count: $2 }",
+			"    description: $3",
+		],
+		"description": "Create PPD Atom countSelectors"
+	},
+	"PPD atom if": {
+		"scope": "yaml,plaintext",
+		"prefix": "ppd_if",
+		"body": [
+			"- if:",
+			"    errorIf: \" $1 \"",
+			"    description: $2",
+		],
+		"description": "Create PPD Atom if"
+	},
+	"PPD atom waitForSelector": {
+		"scope": "yaml,plaintext",
+		"prefix": "ppd_waitForSelector",
+		"body": [
+			"- waitForSelector:",
+			"    bS: { selector: $1 }",
+			"    description: $2",
+		],
+		"description": "Create PPD Atom waitForSelector"
+	},
+	"PPD atom clickSelectorAndWait": {
+		"scope": "yaml,plaintext",
+		"prefix": "ppd_clickSelectorAndWait",
+		"body": [
+			"- clickSelectorAndWait:",
+			"    bS:",
+			"      selector: $1",
+			"      selectorWait: $2",
+			"    bD:",
+			"      time: $3",
+			"    description: $4",
+		],
+		"description": "Create PPD Atom clickSelectorAndWait"
+	},
+	"PPD atom getText": {
+		"scope": "yaml,plaintext",
+		"prefix": "ppd_getText",
+		"body": [
+			"- getText:",
+			"    bS: { selector: $1 }",
+			"    r: { $2: text }",
+			"    description: $3",
+		],
+		"description": "Create PPD Atom getText"
+	},
+	"PPD atom checkSelector": {
+		"scope": "yaml,plaintext",
+		"prefix": "ppd_checkSelector",
+		"body": [
+			"- checkSelector:",
+			"    bS: { selector: $1 }",
+			"    description: $2",
+		],
+		"description": "Create PPD Atom checkSelector"
+	}
+}

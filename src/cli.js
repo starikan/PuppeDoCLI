@@ -21,6 +21,7 @@ function parseArgumentsIntoOptions(rawArgs) {
     git: args['--git'] || false,
     template: args._[0],
     install: args['--install'] || false,
+    atoms: args['--atoms'] || false,
   };
 }
 
@@ -62,12 +63,22 @@ async function promptForMissingOptions(options) {
     });
   }
 
+  if (!options.atoms) {
+    questions.push({
+      type: 'confirm',
+      name: 'atoms',
+      message: 'Atoms add to project?',
+      default: false,
+    });
+  }
+
   const answers = await inquirer.prompt(questions);
   return {
     ...options,
     template: options.template || answers.template,
     git: options.git || answers.git,
     install: options.install || answers.install,
+    atoms: options.atoms || answers.atoms,
   };
 }
 
