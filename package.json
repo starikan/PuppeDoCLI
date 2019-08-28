@@ -20,7 +20,12 @@
     "puppeteer",
     "create-project"
   ],
-  "author": "",
+  "files": [
+    "bin/",
+    "src/",
+    "templates/"
+  ],
+  "author": "Sergey Starodubov <4analit@gmail.com>",
   "license": "ISC",
   "repository": {},
   "dependencies": {
@@ -28,10 +33,13 @@
     "chalk": "^2.4.2",
     "clear": "^0.1.0",
     "esm": "^3.2.25",
+    "execa": "^2.0.4",
     "figlet": "^1.2.3",
     "inquirer": "^7.0.0",
+    "listr": "^0.14.3",
     "ncp": "^2.0.0",
     "npm-autoinit": "^0.2.0",
+    "pkg-install": "^1.0.0",
     "simple-git": "^1.124.0"
   }
 }

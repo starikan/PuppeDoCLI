@@ -20,7 +20,7 @@ function parseArgumentsIntoOptions(rawArgs) {
     skipPrompts: args['--yes'] || false,
     git: args['--git'] || false,
     template: args._[0],
-    runInstall: args['--install'] || false,
+    install: args['--install'] || false,
   };
 }
 
@@ -53,11 +53,21 @@ async function promptForMissingOptions(options) {
     });
   }
 
+  if (!options.install) {
+    questions.push({
+      type: 'confirm',
+      name: 'install',
+      message: 'Install dependencies?',
+      default: true,
+    });
+  }
+
   const answers = await inquirer.prompt(questions);
   return {
     ...options,
     template: options.template || answers.template,
     git: options.git || answers.git,
+    install: options.install || answers.install,
   };
 }
 
@@ -65,5 +75,5 @@ export async function cli(args) {
   let options = parseArgumentsIntoOptions(args);
   options = await promptForMissingOptions(options);
   await createProject(options);
-  console.log(options);
+  // console.log(options);
 }
