@@ -1,24 +1,34 @@
 {
-  "name": "PuppeDoCLI",
+  "name": "@PuppeDoCLI/create-project",
   "version": "1.0.0",
-  "description": " ",
+  "description": "A CLI for scarfolding PuppeDo projects",
   "main": "index.js",
   "bin": {
-    "ppdcli": "./index.js"
+    "@PuppeDoCLI/create-project": "bin/create-project",
+    "ppd-cli": "bin/create-project"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "cli",
+    "puppedo",
+    "puppeteer",
+    "create-project"
+  ],
   "author": "",
   "license": "ISC",
   "repository": {},
   "dependencies": {
     "chalk": "^2.4.2",
     "clear": "^0.1.0",
+    "esm": "^3.2.25",
     "figlet": "^1.2.3",
     "npm-autoinit": "^0.2.0",
-    "simple-git": "^1.115.0"
+    "simple-git": "^1.124.0"
   }
 }
