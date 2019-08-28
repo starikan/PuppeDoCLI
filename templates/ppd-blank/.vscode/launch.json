@@ -11,8 +11,8 @@
       "args": ["-e", "require(\"PuppeDo\").main()"],
       "env": {
         "PPD_TESTS": "[\"main\"]",
-        "PPD_ENVS": "[\"settings/env.yaml\"]",
-        "PPD_EXT_FILES": "[\"privateData/auth.yaml\"]",
+        "PPD_ENVS": "[\"envs/env.yaml\"]",
+        "PPD_EXT_FILES": "[\"private/auth.yaml\"]",
         "PPD_DEBUG_MODE": "true",
       }
     }
