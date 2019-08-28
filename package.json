@@ -1,11 +1,15 @@
 {
-  "name": "@puppedo/create-project",
+  "name": "@puppedo/cli",
   "version": "1.0.0",
   "description": "A CLI for scarfolding PuppeDo projects",
   "main": "index.js",
   "bin": {
-    "@puppedo/ppd-cli": "bin/create-project",
-    "ppd-cli": "bin/create-project"
+    "@puppedo/ppd-create": "bin/create-project",
+    "ppd-create": "bin/create-project",
+    "ppd-c": "bin/create-project",
+    "@puppedo/ppd-update": "bin/update-project",
+    "ppd-update": "bin/create-project",
+    "ppd-u": "bin/create-project"
   },
   "publishConfig": {
     "access": "public"
@@ -31,16 +35,12 @@
   "dependencies": {
     "arg": "^4.1.1",
     "chalk": "^2.4.2",
-    "clear": "^0.1.0",
     "esm": "^3.2.25",
     "execa": "^2.0.4",
-    "figlet": "^1.2.3",
     "fs-extra": "^8.1.0",
     "inquirer": "^7.0.0",
     "listr": "^0.14.3",
     "ncp": "^2.0.0",
-    "npm-autoinit": "^0.2.0",
-    "pkg-install": "^1.0.0",
-    "simple-git": "^1.124.0"
+    "pkg-install": "^1.0.0"
   }
 }

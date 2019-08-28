@@ -46,15 +46,17 @@ export async function createProject(options) {
 
   const currentFileUrl = import.meta.url;
   let templateDir;
+  console.log(templateDir);
   if (process.platform === 'win32') {
     templateDir = path.resolve(
       new URL(currentFileUrl).pathname.replace('/', ''),
-      '../../templates',
+      '../../../templates',
       options.template.toLowerCase(),
     );
   } else {
-    templateDir = path.resolve(new URL(currentFileUrl).pathname, '../../templates', options.template.toLowerCase());
+    templateDir = path.resolve(new URL(currentFileUrl).pathname, '../../../templates', options.template.toLowerCase());
   }
+  console.log(templateDir);
   options.templateDirectory = templateDir;
 
   try {
