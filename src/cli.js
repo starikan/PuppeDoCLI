@@ -50,7 +50,7 @@ async function promptForMissingOptions(options) {
       type: 'confirm',
       name: 'git',
       message: 'Initialize a git repository?',
-      default: false,
+      default: true,
     });
   }
 
@@ -68,7 +68,7 @@ async function promptForMissingOptions(options) {
       type: 'confirm',
       name: 'atoms',
       message: 'Atoms add to project?',
-      default: false,
+      default: true,
     });
   }
 
