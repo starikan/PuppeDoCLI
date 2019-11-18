@@ -28,14 +28,18 @@ async function initGit(options) {
 }
 
 async function installAtoms(options) {
-  fs.removeSync('atoms');
-  const result = await execa('git', ['clone', 'https://github.com/starikan/PuppeDoAtoms', 'atoms'], {
-    cwd: options.targetDirectory,
-  });
-  if (result.failed) {
-    return Promise.reject(new Error('Failed to install atoms'));
+  try {
+    fs.removeSync('atoms');
+    const result = await execa('git', ['clone', 'https://github.com/starikan/PuppeDoAtoms', 'atoms'], {
+      cwd: options.targetDirectory,
+    });
+    if (result.failed) {
+      return Promise.reject(new Error('Failed to install atoms'));
+    }
+    return;
+  } catch (err) {
+    console.log(err);
   }
-  return;
 }
 
 export async function createProject(options) {
@@ -46,7 +50,6 @@ export async function createProject(options) {
 
   const currentFileUrl = import.meta.url;
   let templateDir;
-  console.log(templateDir);
   if (process.platform === 'win32') {
     templateDir = path.resolve(
       new URL(currentFileUrl).pathname.replace('/', ''),
@@ -56,12 +59,13 @@ export async function createProject(options) {
   } else {
     templateDir = path.resolve(new URL(currentFileUrl).pathname, '../../../templates', options.template.toLowerCase());
   }
-  console.log(templateDir);
-  options.templateDirectory = templateDir;
+  // console.log(templateDir);
+  options.templateDirectory = templateDir.replace(/%20/g, ' ');
 
   try {
-    await access(templateDir, fs.constants.R_OK);
+    await access(options.templateDirectory, fs.constants.R_OK);
   } catch (err) {
+    console.log(err);
     console.error('%s Invalid template name', chalk.red.bold('ERROR'));
     process.exit(1);
   }
@@ -70,6 +74,7 @@ export async function createProject(options) {
     {
       title: 'Copy project files',
       task: () => copyTemplateFiles(options),
+      enabled: () => options.template,
     },
     {
       title: 'Install dependencies',
