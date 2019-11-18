@@ -30,7 +30,7 @@ async function promptForMissingOptions(options) {
       type: 'confirm',
       name: 'npm',
       message: 'Update NPM packages?',
-      default: true,
+      default: false,
     });
   }
 
