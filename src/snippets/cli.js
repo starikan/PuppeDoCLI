@@ -1,25 +1,29 @@
 import arg from 'arg';
 import inquirer from 'inquirer';
 import { createSnippets } from './main';
+import path from 'path';
 
 function parseArgumentsIntoOptions(rawArgs) {
   const args = arg(
     {
       '--root': String,
-      '--add': String,
-      '--packages': String,
+      // '--add': String,
+      '--packages': Boolean,
+      // '--ignore': Array,
       '-r': '--root',
-      '-a': '--add',
+      // '-a': '--add',
       '-p': '--packages',
+      // '-i': '--ignore',
     },
     {
       argv: rawArgs.slice(2),
     },
   );
   return {
-    root: args['--root'] || false,
-    add: args['--add'] || false,
-    packages: args['--packages'] || false,
+    root: args['--root'],
+    // add: args['--add'] || false,
+    packages: args['--packages'],
+    // ignore: args['--ignore'],
   };
 }
 
@@ -31,34 +35,44 @@ async function promptForMissingOptions(options) {
       type: 'input',
       name: 'root',
       message: 'Please choose ROOT folder',
-      default: process.cwd(),
+      default: path.join(process.cwd(), 'tests'),
     });
   }
 
-  if (!options.add) {
-    questions.push({
-      type: 'input',
-      name: 'add',
-      message: 'Additional folders',
-      default: '',
-    });
-  }
+  // if (!options.add) {
+  //   questions.push({
+  //     type: 'input',
+  //     name: 'add',
+  //     message: 'Additional folders',
+  //     default: '',
+  //   });
+  // }
 
   if (!options.packages) {
     questions.push({
       type: 'input',
       name: 'packages',
-      message: 'Packages with tests',
-      default: '',
+      message: 'Packages in node_modules',
+      default: true,
     });
   }
+
+  // if (!options.ignore) {
+  //   questions.push({
+  //     type: 'input',
+  //     name: 'ignore',
+  //     message: 'Folders to ignore',
+  //     default: [],
+  //   });
+  // }
 
   const answers = await inquirer.prompt(questions);
   return {
     ...options,
     root: options.root || answers.root,
-    add: (options.add || answers.add).split(','),
-    packages: (options.packages || answers.packages).split(','),
+    // add: (options.add || answers.add).split(','),
+    packages: options.packages || answers.packages,
+    // ignore: options.ignore || answers.ignore,
   };
 }
 
