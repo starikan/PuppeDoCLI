@@ -6,10 +6,10 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "node -e require('PuppeDo').main() PPD_ENVS=mainEnv PPD_TESTS=main PPD_DEBUG_MODE=true PPD_LOG_TIMER=true"
+    "start": "node -e require('@puppedo/core').main() PPD_ENVS=mainEnv PPD_TESTS=main PPD_DEBUG_MODE=true PPD_LOG_TIMER=true"
   },
   "dependencies": {
-    "PuppeDo": "starikan/PuppeDo",
+    "@puppedo/core": "latest",
     "@puppedo/atoms": "latest"
   }
 }
