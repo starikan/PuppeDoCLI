@@ -27,21 +27,6 @@ async function initGit(options) {
   return;
 }
 
-async function installAtoms(options) {
-  try {
-    fs.removeSync('atoms');
-    const result = await execa('git', ['clone', 'https://github.com/starikan/PuppeDoAtoms', 'atoms'], {
-      cwd: options.targetDirectory,
-    });
-    if (result.failed) {
-      return Promise.reject(new Error('Failed to install atoms'));
-    }
-    return;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 export async function createProject(options) {
   options = {
     ...options,
@@ -81,12 +66,6 @@ export async function createProject(options) {
       task: () => projectInstall({ cwd: options.targetDirectory }),
       enabled: () => options.install,
       skip: () => (!options.install ? 'Pass --install to automatically install dependencies' : undefined),
-    },
-    {
-      title: 'Install atoms',
-      task: () => installAtoms({ cwd: options.targetDirectory }),
-      enabled: () => options.atoms,
-      skip: () => (!options.atoms ? 'Pass --atoms to automatically install atoms' : undefined),
     },
     {
       title: 'Initialize git',
