@@ -6,7 +6,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "run": "node -e require(\"PuppeDo\").main()"
+    "start": "node -e require('PuppeDo').main() PPD_ENVS=mainEnv PPD_TESTS=main PPD_DEBUG_MODE=true PPD_LOG_TIMER=true"
   },
   "dependencies": {
     "PuppeDo": "starikan/PuppeDo",
