@@ -6,10 +6,10 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "update": "ppd-update -y"
+    "run": "node -e require(\"PuppeDo\").main()"
   },
   "dependencies": {
     "PuppeDo": "starikan/PuppeDo",
-    "@puppedo/atoms": "^1.2.0"
+    "@puppedo/atoms": "latest"
   }
 }
