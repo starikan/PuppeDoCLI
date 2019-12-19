@@ -8,12 +8,14 @@
       "type": "node",
       "request": "launch",
       "name": "PPD_RUN",
+      "cwd": "${workspaceFolder}",
       "args": ["-e", "require(\"PuppeDo\").main()"],
       "env": {
-        "PPD_TESTS": "[\"main\"]",
-        "PPD_ENVS": "[\"envs/env.yaml\"]",
-        "PPD_EXT_FILES": "[\"private/auth.yaml\"]",
+        "PPD_ROOT": "tests",
+        "PPD_ENVS": "mainEnv",
+        "PPD_TESTS": "main",
         "PPD_DEBUG_MODE": "true",
+        "PPD_LOG_TIMER": "true",
       }
     }
   ]
