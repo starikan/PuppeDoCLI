@@ -4,12 +4,15 @@
   "description": "A CLI for scarfolding PuppeDo projects",
   "main": "index.js",
   "bin": {
-    "@puppedo/ppd-create": "bin/create-project",
-    "ppd-create": "bin/create-project",
-    "ppd-c": "bin/create-project",
-    "@puppedo/ppd-update": "bin/update-project",
-    "ppd-update": "bin/update-project",
-    "ppd-u": "bin/update-project"
+    "@puppedo/ppd-create-project": "bin/create-project",
+    "ppd-create-project": "bin/create-project",
+    "ppd-cp": "bin/create-project",
+    "@puppedo/ppd-update-project": "bin/update-project",
+    "ppd-update-project": "bin/update-project",
+    "ppd-up": "bin/update-project",
+    "@puppedo/ppd-snippets": "bin/update-snippets",
+    "ppd-snippets": "bin/update-snippets",
+    "ppd-sp": "bin/update-snippets"
   },
   "publishConfig": {
     "access": "public"
