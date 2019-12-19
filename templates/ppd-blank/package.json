@@ -9,6 +9,7 @@
     "update": "ppd-update -y"
   },
   "dependencies": {
-    "PuppeDo": "starikan/PuppeDo"
+    "PuppeDo": "starikan/PuppeDo",
+    "@puppedo/atoms": "^1.2.0"
   }
 }

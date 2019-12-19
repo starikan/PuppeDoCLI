@@ -16,13 +16,21 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test specified\""
   },
   "keywords": [
     "cli",
     "puppedo",
     "puppeteer",
-    "create-project"
+    "create-project",
+    "testing",
+    "tests",
+    "e2e",
+    "end-to-end",
+    "chrome",
+    "electron",
+    "yaml programming",
+    "automation"
   ],
   "files": [
     "bin/",
@@ -31,7 +39,13 @@
   ],
   "author": "Sergey Starodubov <4analit@gmail.com>",
   "license": "ISC",
-  "repository": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/starikan/PuppeDoCLI.git"
+  },
+  "bugs": {
+    "url": "https://github.com/starikan/PuppeDoCLI/issues"
+  },
   "dependencies": {
     "arg": "^4.1.1",
     "chalk": "^3.0.0",
