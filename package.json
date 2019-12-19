@@ -10,9 +10,9 @@
     "@puppedo/ppd-update-project": "bin/update-project",
     "ppd-update-project": "bin/update-project",
     "ppd-up": "bin/update-project",
-    "@puppedo/ppd-snippets": "bin/update-snippets",
-    "ppd-snippets": "bin/update-snippets",
-    "ppd-sp": "bin/update-snippets"
+    "@puppedo/ppd-snippets": "bin/snippets",
+    "ppd-snippets": "bin/snippets",
+    "ppd-sp": "bin/snippets"
   },
   "publishConfig": {
     "access": "public"
