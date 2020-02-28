@@ -52,7 +52,7 @@ async function promptForMissingOptions(options) {
     questions.push({
       type: 'input',
       name: 'packages',
-      message: 'Packages in node_modules',
+      message: 'Atoms in node_modules',
       default: true,
     });
   }

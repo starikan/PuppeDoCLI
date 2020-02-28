@@ -96,13 +96,15 @@ export async function createSnippets(options) {
   const tests = files.filter(v => exts.includes(path.parse(v).ext));
 
   tests.forEach(filePath => {
-    const full = yaml.safeLoadAll(fs.readFileSync(filePath, 'utf8'));
-    for (let v of full) {
-      v.filePath = filePath;
-      if (types.includes(v.type)) {
-        allContent.push(v);
+    try {
+      const full = yaml.safeLoadAll(fs.readFileSync(filePath, 'utf8'));
+      for (let v of full) {
+        v.filePath = filePath;
+        if (types.includes(v.type)) {
+          allContent.push(v);
+        }
       }
-    }
+    } catch (error) {}
   });
 
   const snippets = allContent.reduce((result, v) => {
