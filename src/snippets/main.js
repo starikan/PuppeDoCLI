@@ -68,10 +68,9 @@ const templateGen = (data, type) => {
     snippet.body.push('    ' + `errorIf: "false"`);
   }
 
-  genBlock(allowResults, counter, 'results', 'r', true);
+  genBlock(allowResults, counter, 'results', 'result', true);
 
   if (allowResults) {
-    snippet.body.push('    ' + `resultFunction: ""`);
     snippet.body.push('    ' + `errorIfResult: "false"`);
     snippet.body.push('    ' + `while: "false"`);
     snippet.body.push('    ' + `repeat: 1`);
@@ -82,30 +81,41 @@ const templateGen = (data, type) => {
 
 export async function createSnippets(options) {
   const exts = ['.yaml', '.yml', '.ppd'];
-  const types = ['test', 'atom'];
-  let allContent = [];
+  const allContent = [];
 
-  let files = walkSync(options.root, { ignore: options.ignore }).map(v => path.join(options.root, v));
-
-  if (options.packages) {
-    const nodeModulesPath = path.join(process.cwd(), 'node_modules');
-    const nodeModules = walkSync(nodeModulesPath).map(v => path.join(nodeModulesPath, v));
-    files = [...files, ...nodeModules];
-  }
-
-  const tests = files.filter(v => exts.includes(path.parse(v).ext));
-
-  tests.forEach(filePath => {
-    try {
-      const full = yaml.safeLoadAll(fs.readFileSync(filePath, 'utf8'));
-      for (let v of full) {
-        v.filePath = filePath;
-        if (types.includes(v.type)) {
+  // Get files from tests folder
+  walkSync(options.root, { ignore: options.ignore })
+    .map((v) => path.join(options.root, v))
+    .filter((v) => exts.includes(path.parse(v).ext))
+    .forEach((filePath) => {
+      try {
+        const full = yaml.safeLoadAll(fs.readFileSync(filePath, 'utf8'));
+        for (let v of full) {
+          v.filePath = filePath;
+          v.type = v.type || 'test';
           allContent.push(v);
         }
-      }
-    } catch (error) {}
-  });
+      } catch (error) {}
+    });
+
+  // Get atoms from mode_modules
+  if (options.packages) {
+    const nodeModulesPath = path.join(process.cwd(), 'node_modules');
+    walkSync(nodeModulesPath)
+      .map((v) => path.join(nodeModulesPath, v))
+      .filter((v) => exts.includes(path.parse(v).ext))
+      .forEach((filePath) => {
+        try {
+          const full = yaml.safeLoadAll(fs.readFileSync(filePath, 'utf8'));
+          for (let v of full) {
+            v.filePath = filePath;
+            if (v.type === 'atom') {
+              allContent.push(v);
+            }
+          }
+        } catch (error) {}
+      });
+  }
 
   const snippets = allContent.reduce((result, v) => {
     if (v.type === 'test') {
@@ -117,6 +127,6 @@ export async function createSnippets(options) {
     return result;
   }, {});
 
-  fs.writeFileSync(path.join(process.cwd(), '.vscode', 'ppd.code-snippets'), JSON.stringify(snippets));
+  fs.writeFileSync(path.join(process.cwd(), '.vscode', 'ppd.code-snippets'), JSON.stringify(snippets, null, 2));
   console.log('Create snippets');
 }
