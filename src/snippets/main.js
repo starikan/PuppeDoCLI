@@ -57,6 +57,9 @@ const templateGen = (data, type) => {
     return counter;
   };
 
+  snippet.body.push('    ' + `description: TODO description`);
+  snippet.body.push('    ' + `bindDescription: "'TODO: ' + 0"`);
+
   counter = genBlock(needData, counter, 'data', 'bindData');
   counter = genBlock(needData, counter, 'data', 'data');
   counter = genBlock(needSelectors, counter, 'selectors', 'bindSelector');
@@ -73,8 +76,9 @@ const templateGen = (data, type) => {
   if (allowResults) {
     snippet.body.push('    ' + `errorIfResult: "false"`);
     snippet.body.push('    ' + `while: "false"`);
-    snippet.body.push('    ' + `repeat: 1`);
   }
+  snippet.body.push('    ' + `repeat: 1`);
+  snippet.body.push('    ' + `debug: false`);
 
   return snippet;
 };
