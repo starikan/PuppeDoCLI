@@ -1,6 +1,6 @@
 ---
-type: selectors
 name: selectors
+type: selectors
 description: Simple Selectors
 data:
   selector: test

@@ -1,6 +1,6 @@
 ---
-type: data
 name: dataPrivate
+type: data
 description: Secret Data
 needEnv: mainEnv
 data:

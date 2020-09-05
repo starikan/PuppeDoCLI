@@ -1,6 +1,5 @@
 ---
 name: main
-type: test
 beforeTest:
   - envSwitch:
       data: { envName: 'mainEnv' }
