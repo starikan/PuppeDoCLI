@@ -12,9 +12,11 @@ const templateGen = (data, type) => {
     scope: 'yaml,plaintext',
     prefix: `ppd${type === 'atom' ? 'a' : 't'}_${name}`,
     description: description,
-    bindDescription: `"'${description}: ' + 0"`,
-    body: [`- ${name}:`, '    ' + `description: $${counter++}`],
+    body: [`- ${name}:`],
   };
+
+  snippet.body.push('    ' + `description: $${counter++}`);
+  snippet.body.push('    ' + `bindDescription: "'$${counter++}: ' + 0"`);
 
   const genLine = (data, helpName, invert) => {
     let helpData = help && help[helpName] && help[helpName][data];
@@ -58,10 +60,10 @@ const templateGen = (data, type) => {
     return counter;
   };
 
-  counter = genBlock(needData, counter, 'data', 'bindData');
   counter = genBlock(needData, counter, 'data', 'data');
-  counter = genBlock(needSelectors, counter, 'selectors', 'bindSelector');
+  counter = genBlock(needData, counter, 'data', 'bindData');
   counter = genBlock(needSelectors, counter, 'selectors', 'selector');
+  counter = genBlock(needSelectors, counter, 'selectors', 'bindSelector');
   counter = genBlock(allowOptions, counter, 'options', 'options');
 
   if (needData || needSelectors) {
