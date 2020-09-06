@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import fs from 'fs-extra';
+import fs from 'fs';
 import ncp from 'ncp';
 import path from 'path';
 import { promisify } from 'util';
@@ -8,7 +8,6 @@ import Listr from 'listr';
 import { projectInstall } from 'pkg-install';
 
 const URL = require('url').URL;
-const access = promisify(fs.access);
 const copy = promisify(ncp);
 
 async function copyTemplateFiles(options) {
@@ -44,11 +43,12 @@ export async function createProject(options) {
   } else {
     templateDir = path.resolve(new URL(currentFileUrl).pathname, '../../../templates', options.template.toLowerCase());
   }
-  // console.log(templateDir);
   options.templateDirectory = templateDir.replace(/%20/g, ' ');
 
   try {
-    await access(options.templateDirectory, fs.constants.R_OK);
+    if (!fs.existsSync(options.templateDirectory)) {
+      fs.mkdirSync(options.templateDirectory);
+    }
   } catch (err) {
     console.log(err);
     console.error('%s Invalid template name', chalk.red.bold('ERROR'));
