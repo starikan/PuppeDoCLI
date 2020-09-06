@@ -12,6 +12,7 @@ const templateGen = (data, type) => {
     scope: 'yaml,plaintext',
     prefix: `ppd${type === 'atom' ? 'a' : 't'}_${name}`,
     description: description,
+    bindDescription: `"'${description}: ' + 0"`,
     body: [`- ${name}:`, '    ' + `description: $${counter++}`],
   };
 
@@ -56,9 +57,6 @@ const templateGen = (data, type) => {
     }
     return counter;
   };
-
-  snippet.body.push('    ' + `description: TODO description`);
-  snippet.body.push('    ' + `bindDescription: "'TODO: ' + 0"`);
 
   counter = genBlock(needData, counter, 'data', 'bindData');
   counter = genBlock(needData, counter, 'data', 'data');
