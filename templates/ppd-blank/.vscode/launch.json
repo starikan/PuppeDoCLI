@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "PPD_RUN",
       "cwd": "${workspaceFolder}",
-      "args": ["-e", "require(\"PuppeDo\").main()"],
+      "args": ["-e", "require('@puppedo/atoms');require(\"@puppedo/core\").run()"],
       "env": {
         "PPD_ROOT": "tests",
         "PPD_ENVS": "mainEnv",

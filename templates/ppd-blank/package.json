@@ -6,10 +6,11 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "node -e require('@puppedo/core').main() PPD_ROOT=tests PPD_ENVS=mainEnv PPD_TESTS=main PPD_DEBUG_MODE=true PPD_LOG_TIMER=true"
+    "start": "node -e require('@puppedo/atoms');require('@puppedo/core').run() PPD_ROOT=tests PPD_ENVS=mainEnv PPD_TESTS=main PPD_DEBUG_MODE=true PPD_LOG_TIMER=true"
   },
   "dependencies": {
     "@puppedo/core": "latest",
-    "@puppedo/atoms": "latest"
+    "@puppedo/atoms": "latest",
+    "playwright": "latest"
   }
 }
