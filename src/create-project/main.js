@@ -10,8 +10,8 @@ import { projectInstall } from 'pkg-install';
 const URL = require('url').URL;
 const copy = promisify(ncp);
 
-async function copyTemplateFiles(options) {
-  return copy(options.templateDirectory, options.targetDirectory, {
+async function copyTemplateFiles(templateDirectory, targetDirectory) {
+  return copy(templateDirectory, targetDirectory, {
     clobber: false,
   });
 }
@@ -26,7 +26,7 @@ async function initGit(options) {
   return;
 }
 
-export async function createProject(options) {
+export async function createProject(options = {}) {
   options = {
     ...options,
     targetDirectory: options.targetDirectory || process.cwd(),
@@ -58,7 +58,7 @@ export async function createProject(options) {
   const tasks = new Listr([
     {
       title: 'Copy project files',
-      task: () => copyTemplateFiles(options),
+      task: () => copyTemplateFiles(options.templateDirectory, options.targetDirectory),
       enabled: () => options.template,
     },
     {
