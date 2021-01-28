@@ -26,7 +26,7 @@ const initGit = async (options) => {
   return;
 };
 
-const createProject = async (options = {}) => {
+export const createProject = async (options = {}) => {
   options = {
     ...options,
     targetDirectory: options.targetDirectory || process.cwd(),
@@ -79,5 +79,3 @@ const createProject = async (options = {}) => {
   console.log('%s Project ready', chalk.green.bold('DONE'));
   return true;
 };
-
-module.exports = { createProject };
