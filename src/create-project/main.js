@@ -6,17 +6,17 @@ const { promisify } = require('util');
 const execa = require('execa');
 const Listr = require('listr');
 const { projectInstall } = require('pkg-install');
+const { URL } = require('url');
 
-const URL = require('url').URL;
 const copy = promisify(ncp);
 
-async function copyTemplateFiles(templateDirectory, targetDirectory) {
+const copyTemplateFiles = async (templateDirectory, targetDirectory) => {
   return copy(templateDirectory, targetDirectory, {
     clobber: false,
   });
-}
+};
 
-async function initGit(options) {
+const initGit = async (options) => {
   const result = await execa('git', ['init'], {
     cwd: options.targetDirectory,
   });
@@ -24,7 +24,7 @@ async function initGit(options) {
     return Promise.reject(new Error('Failed to initialize git'));
   }
   return;
-}
+};
 
 const createProject = async (options = {}) => {
   options = {

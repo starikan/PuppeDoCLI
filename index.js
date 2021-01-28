@@ -1,11 +1,9 @@
-const { createProject } = require('./src/create-project/main');
 const { createSnippets } = require('./src/snippets/main');
 
-if (module.parent) {
+if (!module.parent) {
+  const { createProject } = require('./src/create-project/main');
   createProject();
+  module.exports.createProject = createProject;
 }
 
-module.exports = {
-  createSnippets,
-  createProject,
-};
+module.exports.createSnippets = createSnippets;
