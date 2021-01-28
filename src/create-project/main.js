@@ -1,11 +1,11 @@
-import chalk from 'chalk';
-import fs from 'fs';
-import ncp from 'ncp';
-import path from 'path';
-import { promisify } from 'util';
-import execa from 'execa';
-import Listr from 'listr';
-import { projectInstall } from 'pkg-install';
+const chalk = require('chalk');
+const fs = require('fs');
+const ncp = require('ncp');
+const path = require('path');
+const { promisify } = require('util');
+const execa = require('execa');
+const Listr = require('listr');
+const { projectInstall } = require('pkg-install');
 
 const URL = require('url').URL;
 const copy = promisify(ncp);
@@ -26,7 +26,7 @@ async function initGit(options) {
   return;
 }
 
-export async function createProject(options = {}) {
+const createProject = async (options = {}) => {
   options = {
     ...options,
     targetDirectory: options.targetDirectory || process.cwd(),
@@ -78,4 +78,6 @@ export async function createProject(options = {}) {
   await tasks.run();
   console.log('%s Project ready', chalk.green.bold('DONE'));
   return true;
-}
+};
+
+module.exports = { createProject };
