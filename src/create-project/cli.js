@@ -25,7 +25,7 @@ function parseArgumentsIntoOptions(rawArgs) {
 }
 
 async function promptForMissingOptions(options) {
-  const defaultTemplate = 'PPD-Blank';
+  const defaultTemplate = 'PPD-Simple';
   if (options.skipPrompts) {
     return {
       ...options,
@@ -39,7 +39,7 @@ async function promptForMissingOptions(options) {
       type: 'list',
       name: 'template',
       message: 'Please choose which project template to use',
-      choices: ['PPD-Blank'],
+      choices: ['PPD-Simple', 'PPD-Blank'],
       default: defaultTemplate,
     });
   }

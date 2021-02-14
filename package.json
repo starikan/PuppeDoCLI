@@ -1,11 +1,11 @@
 {
   "name": "@puppedo/cli",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "A CLI for scarfolding PuppeDo projects",
   "main": "index.js",
   "bin": {
     "ppd-create-project": "bin/create-project",
-    "ppd-cp": "bin/create-project",
+    "ppd-init": "bin/create-project",
     "ppd-project": "bin/create-project",
     "ppd-snippets": "bin/snippets",
     "ppd-sp": "bin/snippets",
